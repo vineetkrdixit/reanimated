@@ -1578,6 +1578,11 @@
 "@types/prop-types@*":
   version "15.7.12"
 
+"@types/react-native-razorpay@^2.2.5":
+  version "2.2.5"
+  resolved "https://registry.npmjs.org/@types/react-native-razorpay/-/react-native-razorpay-2.2.5.tgz"
+  integrity sha512-nXLwqoE48RiAhNmhuMu6KU5i/roPKt7jt0R0Yp1SxmASWwAPPnmPPu+ANfCzVSro5W5y7jof82KS1QyB/M1zkQ==
+
 "@types/react-test-renderer@^18.0.0":
   version "18.3.0"
   dependencies:
@@ -4586,6 +4591,8 @@ react-native-gesture-handler@^2.18.1, "react-native-gesture-handler@>= 1.0.0":
 
 react-native-razorpay@^2.3.0:
   version "2.3.0"
+  resolved "https://registry.npmjs.org/react-native-razorpay/-/react-native-razorpay-2.3.0.tgz"
+  integrity sha512-xxiZCPuZmiRq5UHDr+D4OoyxEjMu0ujC+RaE+rYo938EK0Vc21dZRUVxMVP1L2WgzA8PYwmD5FWvdHNtWLQC4Q==
 
 react-native-reanimated@3.15.0:
   version "3.15.0"

@@ -12,7 +12,6 @@ module.exports = {
 		node: true,
 	},
 	rules: {
-		'no-console': 'warn',
 		'react/react-in-jsx-scope': 'off',
 		'no-unused-vars': 'warn',
 		'react/prop-types': 'off',

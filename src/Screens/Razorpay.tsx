@@ -1,7 +1,7 @@
 import { RazorpayNavigationProp } from '@src/Types/NavigationTypes';
 import React, { FC } from 'react';
 import { Text, StyleSheet, View, TouchableHighlight } from 'react-native';
-import RazorpayCheckout from 'react-native-razorpay';
+import RazorpayCheckout, { CheckoutOptions } from 'react-native-razorpay';
 
 type Razourpay = {
 	navigation: RazorpayNavigationProp;
@@ -17,12 +17,12 @@ export const Razorpay: FC<Razourpay> = () => {
 			<TouchableHighlight
 				style={styles.btn}
 				onPress={() => {
-					const options = {
+					const options: CheckoutOptions = {
 						description: 'Credits towards consultation',
 						image: 'https://i.imgur.com/3g7nmJC.jpg',
 						currency: 'INR',
 						key: 'rzp_test_TdwnVfZG2D4zhn',
-						amount: '5000', //means 50 rs
+						amount: 5000, //means 50 rs
 						name: 'Organization Name',
 						// order_id: 'order_DslnoIgkIDL8Zt', //Replace this with an order_id created using Orders API.
 						prefill: {
@@ -31,6 +31,7 @@ export const Razorpay: FC<Razourpay> = () => {
 							name: 'Gaurav Kumar',
 						},
 						theme: { color: '#53a20e' },
+						order_id: '',
 					};
 					RazorpayCheckout.open(options)
 						.then((data: { razorpay_payment_id: string }) => {

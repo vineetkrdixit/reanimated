@@ -1,13 +1,13 @@
 import { HomeScreenData } from '@src/Constants';
-import { HomeScreenNavigationProp } from '@src/Types/NavigationTypes';
+import { HomeScreenNavigationProp, RootStackParamList } from '@src/Types/NavigationTypes';
 import React, { FC } from 'react';
 import { Text, StyleSheet, View, FlatList, TouchableOpacity } from 'react-native';
 
-type Items = {
+export type Items = {
 	id: number;
 	title: string;
 	description: string;
-	routeName: string;
+	routeName: keyof RootStackParamList;
 };
 type HomeData = {
 	item: Items;

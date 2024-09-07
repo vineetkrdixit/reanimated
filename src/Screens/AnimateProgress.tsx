@@ -1,4 +1,5 @@
-import React from 'react';
+import { AnimateProgressNavigationProp } from '@src/Types/NavigationTypes';
+import React, { FC } from 'react';
 import { StyleSheet, View, Button } from 'react-native';
 import Animated, {
 	Easing,
@@ -7,7 +8,10 @@ import Animated, {
 	withTiming,
 } from 'react-native-reanimated';
 
-export const AnimateProgress = () => {
+type AnimateProgressProps = {
+	navigation: AnimateProgressNavigationProp;
+};
+export const AnimateProgress: FC<AnimateProgressProps> = () => {
 	const widther = useSharedValue(100);
 	const handlePress = () => {
 		widther.value = withTiming(widther.value + 50, {
@@ -26,7 +30,7 @@ export const AnimateProgress = () => {
 					styles.box,
 				]}
 			/>
-			<Button onPress={handlePress} title="Click me" />
+			<Button onPress={handlePress} title='Click me' />
 		</View>
 	);
 };

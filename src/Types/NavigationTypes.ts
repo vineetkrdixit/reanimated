@@ -12,3 +12,19 @@ export type RootStackParamList = {
 
 export type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'HomeScreen'>;
 export type RazorpayNavigationProp = StackNavigationProp<RootStackParamList, 'Razorpay'>;
+export type AnimateWithStyledComponentNavigationProp = StackNavigationProp<
+	RootStackParamList,
+	'AnimateWithStyledComponent'
+>;
+export type AnimateProgressNavigationProp = StackNavigationProp<
+	RootStackParamList,
+	'AnimateProgress'
+>;
+export type AnimateMovementNavigationProp = StackNavigationProp<
+	RootStackParamList,
+	'AnimateMovement'
+>;
+export type TransformAnimationtNavigationProp = StackNavigationProp<
+	RootStackParamList,
+	'TransformAnimation'
+>;

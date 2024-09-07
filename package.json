@@ -34,6 +34,7 @@
     "@react-native/metro-config": "0.75.2",
     "@react-native/typescript-config": "0.75.2",
     "@types/react": "^18.2.6",
+    "@types/react-native-razorpay": "^2.2.5",
     "@types/react-test-renderer": "^18.0.0",
     "babel-jest": "^29.6.3",
     "eslint": "^8.19.0",
@@ -45,12 +46,12 @@
     "typescript": "5.0.4"
   },
   "lint-staged": {
-  "*.{js,jsx,ts,tsx}": [
-    "node remove_console.js",
-    "prettier --write",
-    "eslint --fix"
-  ]
-},
+    "*.{js,jsx,ts,tsx}": [
+      "node remove_console.js",
+      "prettier --write",
+      "eslint --fix"
+    ]
+  },
   "engines": {
     "node": ">=18"
   },
