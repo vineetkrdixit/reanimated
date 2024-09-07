@@ -5,7 +5,6 @@ import { Text, StyleSheet, View, FlatList, TouchableOpacity } from 'react-native
 export const HomeScreen = ({ navigation }) => {
 	const renderHomeData = ({ item, index }) => {
 		const { routeName, title } = item;
-		console.log(routeName, '-=-=');
 
 		return (
 			<TouchableOpacity
