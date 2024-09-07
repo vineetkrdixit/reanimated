@@ -37,12 +37,17 @@ jobs:
           name: Install dependencies
           command: |
             npm install
-          
+
       - restore_cache:
           keys:
             - gradle-cache-{{ .Branch }}-{{ checksum "android/build.gradle" }}
             - gradle-cache-{{ .Branch }}
             - gradle-cache
+
+      - run:
+          name: Make Gradle wrapper executable
+          command: |
+            chmod +x ./android/gradlew
           
       - run:
           name: Build APK
