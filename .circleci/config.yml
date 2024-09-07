@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  test:
+  code_Formatting:
     docker:
       - image: reactnativecommunity/react-native-android:latest
     steps:
@@ -27,8 +27,60 @@ jobs:
           command: |
             npx prettier --write .  # Format all files with Prettier
 
+  build_android:
+    docker:
+      - image: reactnativecommunity/react-native-android:latest
+    steps:
+      - checkout  # Check out your source code
+      
+      - run:
+          name: Install dependencies
+          command: |
+            npm install
+          
+      - restore_cache:
+          keys:
+            - gradle-cache-{{ .Branch }}-{{ checksum "android/build.gradle" }}
+            - gradle-cache-{{ .Branch }}
+            - gradle-cache
+          
+      - run:
+          name: Build APK
+          command: |
+            cd android
+            ./gradlew assembleRelease
+
+      - save_cache:
+          paths:
+            - ~/.gradle/caches
+            - ~/.gradle/wrapper
+          key: gradle-cache-{{ .Branch }}-{{ checksum "android/build.gradle" }}
+
+  build_ios:
+    macos:
+      xcode: "14.0.0"  # Specify your Xcode version
+    steps:
+      - checkout  # Check out your source code
+      
+      - run:
+          name: Install dependencies
+          command: |
+            npm install
+          
+      - run:
+          name: Build iOS
+          command: |
+            cd ios
+            xcodebuild -workspace YourApp.xcworkspace -scheme YourApp -sdk iphoneos -configuration AppStoreDistribution archive -archivePath $HOME/YourApp.xcarchive
+
 workflows:
   version: 2
-  linting:
+  linting_and_building:
     jobs:
-      - test
+      - code_Formatting
+      - build_android:
+          requires:
+            - code_Formatting
+      - build_ios:
+          requires:
+            - code_Formatting
