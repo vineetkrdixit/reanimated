@@ -11,12 +11,9 @@ export const HomeScreen = ({ navigation }) => {
 			<TouchableOpacity
 				style={styles.card}
 				key={index.toString() + 1}
-				onPress={() => navigation.navigate(routeName)}>
+				onPress={() => navigation.navigate(routeName)}
+			>
 				<Text>{title}</Text>
-
-
-
-        
 			</TouchableOpacity>
 		);
 	};
