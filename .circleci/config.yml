@@ -1,0 +1,113 @@
+version: 2.1
+
+jobs:
+  code_Formatting:
+    docker:
+      - image: reactnativecommunity/react-native-android:latest
+    steps:
+      - checkout  # Check out your source code
+      
+      - run:
+          name: Install dependencies
+          command: |
+            npm install
+          
+      - run:
+          name: Run ESLint
+          command: |
+            npx eslint . --max-warnings=0  # Lint all files and fail the build if there are warnings
+
+      - run:
+          name: Run ESLint --fix
+          command: |
+            npx eslint . --fix  # Automatically fix fixable ESLint issues
+      
+      - run:
+          name: Run Prettier
+          command: |
+            npx prettier --write .  # Format all files with Prettier
+
+  build_android:
+    docker:
+      - image: reactnativecommunity/react-native-android:latest
+    steps:
+      - checkout  # Check out your source code
+      
+      - run:
+          name: Install dependencies
+          command: |
+            npm install
+
+      - restore_cache:
+          keys:
+            - gradle-cache-{{ .Branch }}-{{ checksum "android/build.gradle" }}
+            - gradle-cache-{{ .Branch }}
+            - gradle-cache
+
+      - run:
+          name: Make Gradle wrapper executable
+          command: |
+            chmod +x ./android/gradlew
+          
+      - run:
+          name: Build APK
+          command: |
+            cd android
+            ./gradlew assembleRelease
+
+      - save_cache:
+          paths:
+            - ~/.gradle/caches
+            - ~/.gradle/wrapper
+          key: gradle-cache-{{ .Branch }}-{{ checksum "android/build.gradle" }}
+
+  build_ios:
+    macos:
+      xcode: '15.2.0'
+    steps:
+      - checkout
+      - run:
+          name: Set Ruby and Gem Environment
+          command: |
+            echo 'export GEM_HOME=$HOME/.gem' >> $BASH_ENV
+            echo 'export PATH=$GEM_HOME/bin:$PATH' >> $BASH_ENV
+            source $BASH_ENV
+            ruby -v
+            gem -v
+            bundle -v
+            node -v
+            npm -v
+      - run:
+          name: Install node modules
+          command: npm install
+      - run:
+          name: Install curl
+          command: brew install curl
+      - run:
+          name: Bundle install
+          command: bundle install
+          working_directory: ios
+
+workflows:
+  version: 2
+  linting_and_building:
+    jobs:
+      - code_Formatting:
+          filters:
+            branches:
+              only:
+                - develop
+      - build_android:
+          requires:
+            - code_Formatting
+          filters:
+            branches:
+              only:
+                - develop
+      - build_ios:
+          requires:
+            - code_Formatting
+          filters:
+            branches:
+              only:
+                - develop

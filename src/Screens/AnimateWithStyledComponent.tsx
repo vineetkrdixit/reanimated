@@ -9,11 +9,9 @@ type AnimateWithStyledComponentProps = {
 export const AnimateWithStyledComponent: FC<AnimateWithStyledComponentProps> = () => {
 	const translateX = useSharedValue(0);
 	const slideAnimatedStyle = () => {
-		//this show the current value or the value to be incremented in useShared Value
 		translateX.value = translateX.value + 50;
 	};
 	const animatedStyles = useAnimatedStyle(() => ({
-		//function check for the value to be calculated based upon condition
 		transform: [{ translateX: withSpring(translateX.value * 2) }],
 	}));
 

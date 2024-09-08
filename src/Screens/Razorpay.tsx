@@ -28,7 +28,7 @@ export const Razorpay: FC<Razourpay> = () => {
 						prefill: {
 							email: 'gaurav.kumar@example.com',
 							contact: '9191919191',
-							name: 'Gaurav Kumar',
+							name: 'Gaurav Kumar singh',
 						},
 						theme: { color: '#53a20e' },
 						order_id: '',
