@@ -92,10 +92,22 @@ workflows:
   version: 2
   linting_and_building:
     jobs:
-      - code_Formatting
+      - code_Formatting:
+          filters:
+            branches:
+              only:
+                - develop
       - build_android:
           requires:
             - code_Formatting
+          filters:
+            branches:
+              only:
+                - develop
       - build_ios:
           requires:
             - code_Formatting
+          filters:
+            branches:
+              only:
+                - develop
