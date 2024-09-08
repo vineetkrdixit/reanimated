@@ -76,10 +76,10 @@ jobs:
             gem -v
             bundle -v
             node -v
-            yarn -v
+            npm -v
       - run:
           name: Install node modules
-          command: yarn install
+          command: npm install
       - run:
           name: Install curl
           command: brew install curl
