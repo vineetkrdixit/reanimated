@@ -63,20 +63,30 @@ jobs:
 
   build_ios:
     macos:
-      xcode: "14.0.0"  # Specify your Xcode version
+      xcode: '15.2.0'
     steps:
-      - checkout  # Check out your source code
-      
+      - checkout
       - run:
-          name: Install dependencies
+          name: Set Ruby and Gem Environment
           command: |
-            npm install
-          
+            echo 'export GEM_HOME=$HOME/.gem' >> $BASH_ENV
+            echo 'export PATH=$GEM_HOME/bin:$PATH' >> $BASH_ENV
+            source $BASH_ENV
+            ruby -v
+            gem -v
+            bundle -v
+            node -v
+            yarn -v
       - run:
-          name: Build iOS
-          command: |
-            cd ios
-            xcodebuild -workspace YourApp.xcworkspace -scheme YourApp -sdk iphoneos -configuration AppStoreDistribution archive -archivePath $HOME/YourApp.xcarchive
+          name: Install node modules
+          command: yarn install
+      - run:
+          name: Install curl
+          command: brew install curl
+      - run:
+          name: Bundle install
+          command: bundle install
+          working_directory: ios
 
 workflows:
   version: 2
