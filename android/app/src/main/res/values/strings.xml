@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">reanimated</string>
+    <string name="facebook_app_id">1924103064759762</string>
+<string name="facebook_client_token">f49c56ea2bba4db9089b76df49d39e4e</string>
 </resources>

@@ -7,6 +7,9 @@ export type RootStackParamList = {
 	AnimateWithStyledComponent: undefined;
 	TransformAnimation: undefined;
 	Razorpay: undefined;
+	ZegoVideoCall: undefined;
+	ZegoVideoCallScreen: undefined;
+	FacebookAuth: undefined;
 	// other screens can be added here
 };
 
@@ -28,3 +31,9 @@ export type TransformAnimationtNavigationProp = StackNavigationProp<
 	RootStackParamList,
 	'TransformAnimation'
 >;
+export type ZegoVideoCallNavigationProp = StackNavigationProp<RootStackParamList, 'ZegoVideoCall'>;
+export type ZegoVideoCallScreenNavigationProp = StackNavigationProp<
+	RootStackParamList,
+	'ZegoVideoCallScreen'
+>;
+export type FacebookAuthNavigationProp = StackNavigationProp<RootStackParamList, 'FacebookAuth'>;

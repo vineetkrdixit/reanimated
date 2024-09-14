@@ -37,4 +37,16 @@ export const HomeScreenData: Items[] = [
 		description: 'Razourpay',
 		routeName: 'Razorpay',
 	},
+	{
+		id: 6,
+		title: 'ZegoCloud Video calling',
+		description: 'Zego cloud video calling',
+		routeName: 'ZegoVideoCall',
+	},
+	{
+		id: 7,
+		title: 'Facebook Auth',
+		description: 'Facebook Authentication',
+		routeName: 'FacebookAuth',
+	},
 ];
